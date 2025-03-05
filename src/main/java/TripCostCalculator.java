@@ -1,24 +1,30 @@
-import java.util.Scanner;
-
 public class TripCostCalculator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    private final double fuelConsumptionRate;
+    private double distance;
+    private double fuelPrice;
 
-        System.out.print("Enter the distance to travel (in km): ");
-        double distance = scanner.nextDouble();
 
-        System.out.print("Enter the fuel price per liter: ");
-        double fuelPrice = scanner.nextDouble();
-
-        double totalCost = calculateTripCost(distance, fuelPrice);
-
-        System.out.printf("Total cost of the trip: %.2f%n", totalCost);
-
-        scanner.close();
+    public TripCostCalculator() {
+        this.fuelConsumptionRate = 5.0 / 100.0;
     }
-    public static double calculateTripCost(double distance, double fuelPrice) {
-        double fuelConsumptionRate = 5.0 / 100.0;
-        double totalFuelNeeded = distance * fuelConsumptionRate;
-        return totalFuelNeeded * fuelPrice;
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public void setFuelPrice(double fuelPrice) {
+        this.fuelPrice = fuelPrice;
+    }
+
+    public double fuelNeededToTravel() {
+        return distance * fuelConsumptionRate;
+    }
+
+    public double calculateTripCost() {
+        return fuelNeededToTravel() * fuelPrice;
+    }
+
+    public String display() {
+        return "The cost of the trip is: " + calculateTripCost();
     }
 }

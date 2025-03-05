@@ -1,14 +1,41 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 class TripCostCalculatorTest {
+    private TripCostCalculator tripCostCalculator;
+
+    @BeforeEach
+    public void setUp() {
+        tripCostCalculator = new TripCostCalculator();
+    }
+
     @Test
     public void testCalculateTripCost() {
-        assertEquals(10.0, TripCostCalculator.calculateTripCost(100, 2.0), 0.01);
-        assertEquals(25.0, TripCostCalculator.calculateTripCost(250, 2.0), 0.01);
-        assertEquals(37.5, TripCostCalculator.calculateTripCost(500, 1.5), 0.01);
-        assertEquals(0.0, TripCostCalculator.calculateTripCost(0, 2.0), 0.01);
-        assertEquals(0.0, TripCostCalculator.calculateTripCost(0, 0.0), 0.01);
+        tripCostCalculator.setDistance(100);
+        tripCostCalculator.setFuelPrice(1.5);
+        assertEquals(7.5, tripCostCalculator.calculateTripCost());
+    }
+
+    @Test
+    public void testCalculateTripCostZeroDistance() {
+        tripCostCalculator.setDistance(0);
+        tripCostCalculator.setFuelPrice(1.5);
+        assertEquals(0, tripCostCalculator.calculateTripCost());
+    }
+
+    @Test
+    public void fuelNeededToTravel100Km() {
+        tripCostCalculator.setDistance(100);
+        tripCostCalculator.setFuelPrice(1.5);
+        assertEquals(5, tripCostCalculator.fuelNeededToTravel());
+    }
+
+    @Test
+    public void display() {
+        tripCostCalculator.setDistance(100);
+        tripCostCalculator.setFuelPrice(1.5);
+        assertEquals("The cost of the trip is: 7.5", tripCostCalculator.display());
     }
 }

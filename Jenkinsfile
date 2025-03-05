@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Jonnerop/TripCostCalculator.git'
+                git branch: 'main', url: 'https://github.com/Jonnerop/Main.git'
             }
         }
 
