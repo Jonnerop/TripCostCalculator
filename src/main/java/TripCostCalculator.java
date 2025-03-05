@@ -1,10 +1,8 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class TripCostCalculator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
 
         System.out.print("Enter the distance to travel (in km): ");
         double distance = scanner.nextDouble();
