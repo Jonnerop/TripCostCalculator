@@ -29,9 +29,7 @@ class TripCostCalculatorTest {
         System.setIn(System.in);
         System.setOut(System.out);
 
-        String expectedOutput = "Enter the distance to travel in km: Enter the fuel price per liter: Total cost of the trip: 10.00";
-
-        String actualOutput = outputStream.toString().replace("\r\n", "").replace("\n", "").trim();
+        String actualOutput = outputStream.toString().trim().replace("\r\n", "\n");
         assertTrue(actualOutput.contains("Total cost of the trip: 10.00"));
     }
 }
